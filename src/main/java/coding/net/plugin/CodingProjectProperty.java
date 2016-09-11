@@ -70,6 +70,17 @@ public class CodingProjectProperty extends JobProperty<Job<?, ?>> {
             return true;
         }
 
+        private String login;
+        public String getLogin() {
+            return login;
+        }
+
+        private String password;
+        public String getPassword() {
+            return password;
+        }
+
+
         public DescriptorImpl() {
             load();
         }
@@ -100,10 +111,8 @@ public class CodingProjectProperty extends JobProperty<Job<?, ?>> {
 
         @Override
         public boolean configure(StaplerRequest req, JSONObject formData) throws FormException {
-            // To persist global configuration information,
-            // set that to properties and call save().
-            // ^Can also use req.bindJSON(this, formData);
-            //  (easier when there are many fields; need set* methods for this, like setUseFrench)
+            login = formData.getString("login");
+            password = formData.getString("password");
             save();
             return super.configure(req,formData);
         }

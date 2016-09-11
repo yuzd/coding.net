@@ -16,7 +16,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import static javax.servlet.http.HttpServletResponse.SC_METHOD_NOT_ALLOWED;
 import static org.kohsuke.stapler.HttpResponses.error;
 import static org.slf4j.LoggerFactory.getLogger;
-
 /**
  * Created by Administrator on 2016/9/4 0004.
  */
@@ -30,14 +29,19 @@ public @interface RequirePostWithCoding {
 
         @Override
         public Object invoke(StaplerRequest request, StaplerResponse response, Object instance, Object[] arguments) throws IllegalAccessException, InvocationTargetException {
-            shouldBePostMethod(request);
+            check(request);
             return target.invoke(request, response, instance, arguments);
         }
 
-        protected void shouldBePostMethod(StaplerRequest request) throws InvocationTargetException {
+        protected void check(StaplerRequest request) throws InvocationTargetException {
             if (!request.getMethod().equals("POST")) {
-                throw new InvocationTargetException(error(SC_METHOD_NOT_ALLOWED, "Method POST required"));
+               throw new InvocationTargetException(error(SC_METHOD_NOT_ALLOWED, "Method POST required"));
             }
+
+            if (request.getHeader("User-Agent") == null || request.getHeader("User-Agent").toLowerCase().indexOf("coding") == -1 ){
+                throw new InvocationTargetException(error(SC_METHOD_NOT_ALLOWED, "From Coding.Net required"));
+            }
+
         }
 
 

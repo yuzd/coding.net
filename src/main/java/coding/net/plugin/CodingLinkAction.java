@@ -21,12 +21,12 @@ public class CodingLinkAction implements Action {
 
     @Override
     public String getIconFileName() {
-        return "/plugin/github/logov3.png";
+        return "/plugin/coding.net/logov3.png";
     }
 
     @Override
     public String getDisplayName() {
-        return "CodingNet";
+        return "Coding.Net";
     }
 
     @Override
