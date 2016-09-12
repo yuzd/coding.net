@@ -9,9 +9,8 @@
     <version>2.11</version>
     <relativePath/>
   </parent>
-  <groupId>coding.net</groupId>
-  <artifactId>coding.net</artifactId>
-  <version>1.0</version>
+  <artifactId>coding-net-webhook</artifactId>
+  <version>1.0-SNAPSHOT</version>
   <packaging>hpi</packaging>
 
   <properties>
@@ -28,9 +27,9 @@
     -->
   </properties>
 
-  <name>coding.net</name>
+  <name>coding.net webhook Plugin</name>
   <description>webhook for coding.net</description>
-  <url>https://wiki.jenkins-ci.org/display/JENKINS/coding.net+Plugin</url>
+  <url>https://wiki.jenkins-ci.org/display/JENKINS/coding+net+webhook+Plugin</url>
 
   <!-- The default licence for Jenkins OSS Plugins is MIT. Substitute for the applicable one if needed. -->
 
@@ -38,6 +37,7 @@
     <license>
       <name>MIT License</name>
       <url>http://opensource.org/licenses/MIT</url>
+      <comments>All source code is under the MIT license.</comments>
     </license>
   </licenses>
 
@@ -45,50 +45,51 @@
   <developers>
     <developer>
       <id>yuzd</id>
-      <name>yuzhengdong</name>
+      <name>yuzd</name>
       <email>1877682825@qq.com</email>
     </developer>
   </developers>
 
-  <!-- Assuming you want to host on @jenkinsci:
   <scm>
-    <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
-    <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
-    <url>http://github.com/jenkinsci/${project.artifactId}-plugin</url>
+    <connection>scm:git:git://github.com/jenkinsci/coding-net-webhook-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:jenkinsci/coding-net-webhook-plugin.git</developerConnection>
+    <url>http://github.com/jenkinsci/coding-net-webhook-plugin</url>
   </scm>
-   -->
+
   <repositories>
     <repository>
       <id>repo.jenkins-ci.org</id>
       <url>https://repo.jenkins-ci.org/public/</url>
     </repository>
   </repositories>
+
   <pluginRepositories>
     <pluginRepository>
       <id>repo.jenkins-ci.org</id>
       <url>https://repo.jenkins-ci.org/public/</url>
     </pluginRepository>
   </pluginRepositories>
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.4</version>
-        </dependency>
+
+  <dependencies>
+    <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>3.4</version>
+    </dependency>
 
 
-        <dependency><!-- exists in the core -->
-            <groupId>org.jenkins-ci.modules</groupId>
-            <artifactId>instance-identity</artifactId>
-            <version>1.3</version>
-            <scope>provided</scope>
-        </dependency>
+    <dependency><!-- exists in the core -->
+        <groupId>org.jenkins-ci.modules</groupId>
+        <artifactId>instance-identity</artifactId>
+        <version>1.3</version>
+        <scope>provided</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>11.0.1</version>
-        </dependency>
-    </dependencies>
+    <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>11.0.1</version>
+    </dependency>
+  </dependencies>
 
 </project>
