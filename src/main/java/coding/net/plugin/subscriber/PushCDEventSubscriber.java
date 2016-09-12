@@ -92,9 +92,9 @@ public class PushCDEventSubscriber extends CDEventsSubscriber {
                     String auth = eElement.getTextContent();
                     if (auth.equals(jobToken)){
                         jobName = job;
+                        break;
                     }
                     //jobs.put(job,auth);
-                    break;
                 }
             }
             LOGGER.info("{} || {}  <{}>!", login, password,jobName);
