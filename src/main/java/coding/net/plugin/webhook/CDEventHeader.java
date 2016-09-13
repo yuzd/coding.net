@@ -40,7 +40,6 @@ public  @interface CDEventHeader {
 
             String header = req.getHeader(CodingWebHook.URL_VALIDATION_HEADER);
             LOGGER.debug("Header {} -> {}", CodingWebHook.URL_VALIDATION_HEADER, header);
-            LOGGER.error("{} webhook header" ,header);
             if (header == null) {
                 return null;
             }
