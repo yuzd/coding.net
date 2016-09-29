@@ -58,7 +58,6 @@ public @interface CDEventPayload {
             }
             String payload = PAYLOAD_PROCESS.get(contentType).apply(req);
 
-            LOGGER.error("Payload {}", payload);
             return payload;
         }
 

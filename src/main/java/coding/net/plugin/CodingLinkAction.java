@@ -21,7 +21,7 @@ public class CodingLinkAction implements Action {
 
     @Override
     public String getIconFileName() {
-        return "/plugin/coding.net/logov3.png";
+        return "/plugin/coding-net-webhook/logov3.png";
     }
 
     @Override

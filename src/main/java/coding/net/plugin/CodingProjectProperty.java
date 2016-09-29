@@ -102,7 +102,7 @@ public class CodingProjectProperty extends JobProperty<Job<?, ?>> {
             }
 
             if (tpp.projectUrl == null) {
-                LOGGER.fine("projectUrl not found, nullifying GithubProjectProperty");
+                LOGGER.fine("projectUrl not found, nullifying CodingProjectProperty");
                 return null;
             }
 

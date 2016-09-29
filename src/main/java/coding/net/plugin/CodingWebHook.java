@@ -25,6 +25,9 @@ public class CodingWebHook implements UnprotectedRootAction {
 
     public static final String URL_VALIDATION_HEADER = "X-Coding-Event";
 
+    public static final String PLUGIN_XML_NAME = "coding.net.plugin.CodingProjectProperty.xml";
+
+    public static final String PLUGIN_XML_NODE_NAME = "coding.net.plugin.CodingProjectProperty_-DescriptorImpl";
     @Override
     public String getIconFileName() {
         return null;
