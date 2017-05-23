@@ -124,7 +124,14 @@ public class PushCDEventSubscriber extends CDEventsSubscriber {
 
         if (login != null && password != null && jobName !=null){
             //String remoteJobUrl = Jenkins.getInstance().getRootUrl() + "/job/aaaaaa/build?token=" + jobToken;
-            String remoteJobUrl = Jenkins.getInstance().getRootUrl() + "/job/"+jobName+"/build?token=" + jobToken;
+            // http://name:password@ip:8080/jenkins/job/aaaaaa/build?token=" + jobToken
+            String rootUrl = Jenkins.getInstance().getRootUrl();
+            if (rootUrl.indexOf("https://")!=-1){
+                rootUrl = rootUrl.replace("https://","https://"+login+":"+password+"@");
+            }else{
+                rootUrl = rootUrl.replace("http://","http://"+login+":"+password+"@");
+            }
+            String remoteJobUrl = rootUrl + "/job/"+jobName+"/build?token=" + jobToken;
             XSSApi.load(remoteJobUrl, login, password, false);
             LOGGER.debug("job start success <{}>!", jobName);
         }

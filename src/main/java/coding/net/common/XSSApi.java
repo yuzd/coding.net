@@ -1,6 +1,5 @@
 package coding.net.common;
 
-import org.apache.commons.codec.binary.Base64;
 import org.kohsuke.accmod.Restricted;
 import org.kohsuke.accmod.restrictions.NoExternalUse;
 import org.slf4j.Logger;
@@ -42,9 +41,9 @@ public final class XSSApi {
         if (post){
             connection.setRequestMethod("POST");
         }
-        if (null != userName && !"".equals(userName)) {
-            connection.setRequestProperty("Authorization", "Basic " + Base64.encodeBase64String((userName + ":" + password).getBytes("UTF-8")));
-        }
+//        if (null != userName && !"".equals(userName)) {
+//            connection.setRequestProperty("Authorization", "Basic " + Base64.encodeBase64String((userName + ":" + password).getBytes("UTF-8")));
+//        }
         if (300 < connection.getResponseCode()) {
             throw new IOException("remote build fail, wrong response code " + connection.getResponseCode());
         }
