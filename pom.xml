@@ -10,7 +10,7 @@
     <relativePath/>
   </parent>
   <artifactId>coding-net-webhook</artifactId>
-  <version>1.2-SNAPSHOT</version>
+  <version>1.4</version>
   <packaging>hpi</packaging>
 
   <properties>

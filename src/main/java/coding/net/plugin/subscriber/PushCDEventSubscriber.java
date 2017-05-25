@@ -122,18 +122,29 @@ public class PushCDEventSubscriber extends CDEventsSubscriber {
             }
         }
 
+        //excludeClientIPFromCrumb 查看是否看起了CSRF
+        String configPlace = FilenameUtils.concat(workSpace, CodingWebHook.JENKINS_CONFIG_XML_NAME);
+        doc = dBuilder.parse(configPlace);
+        doc.getDocumentElement().normalize();
+        nList = doc.getElementsByTagName(CodingWebHook.PLUGIN_CSRF_NODE_NAME);
+        boolean hasCSRF = nList.getLength()>0;
+        String crumbField = null;
+        String crumbToken = null;
         if (login != null && password != null && jobName !=null){
             //String remoteJobUrl = Jenkins.getInstance().getRootUrl() + "/job/aaaaaa/build?token=" + jobToken;
             // http://name:password@ip:8080/jenkins/job/aaaaaa/build?token=" + jobToken
             String rootUrl = Jenkins.getInstance().getRootUrl();
-            if (rootUrl.indexOf("https://")!=-1){
-                rootUrl = rootUrl.replace("https://","https://"+login+":"+password+"@");
-            }else{
-                rootUrl = rootUrl.replace("http://","http://"+login+":"+password+"@");
+            if(hasCSRF){
+                String scrfUrl = rootUrl + "/crumbIssuer/api/json";
+                String scrfUrlResult =  XSSApi.load(scrfUrl, login, password, false,null,null);
+                JSONObject crumb = fromObject(scrfUrlResult);
+                crumbField = crumb.getString("crumbRequestField");
+                crumbToken = crumb.getString("crumb");
             }
             String remoteJobUrl = rootUrl + "/job/"+jobName+"/build?token=" + jobToken;
-            XSSApi.load(remoteJobUrl, login, password, false);
-            LOGGER.debug("job start success <{}>!", jobName);
+            String buildResult = XSSApi.load(remoteJobUrl, login, password, false,crumbField,crumbToken);
+            LOGGER.debug("job <{}> start success <{}>!", jobName,buildResult);
         }
     }
+
 }
