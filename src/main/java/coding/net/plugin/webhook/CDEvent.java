@@ -5,6 +5,8 @@ package coding.net.plugin.webhook;
  */
 public enum CDEvent {
     PUSH,
+    MERGE_REQUEST,
+    PULL_REQUEST,
     PING;
 
     private CDEvent() {

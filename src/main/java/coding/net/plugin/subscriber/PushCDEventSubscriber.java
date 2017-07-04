@@ -26,6 +26,8 @@ import java.util.Collection;
 import java.util.Set;
 
 import static coding.net.plugin.webhook.CDEvent.PUSH;
+import static coding.net.plugin.webhook.CDEvent.MERGE_REQUEST;
+import static coding.net.plugin.webhook.CDEvent.PULL_REQUEST;
 import static com.google.common.collect.Sets.immutableEnumSet;
 import static net.sf.json.JSONObject.fromObject;
 
@@ -43,7 +45,7 @@ public class PushCDEventSubscriber extends CDEventsSubscriber {
 
     @Override
     protected Set<CDEvent> events() {
-        return immutableEnumSet(PUSH);
+        return immutableEnumSet(PUSH,MERGE_REQUEST,PULL_REQUEST);
     }
 
     @Override
